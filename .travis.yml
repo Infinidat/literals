@@ -4,6 +4,15 @@ python:
   - "2.7"
   - "3.3"
   - "3.4"
+  - "3.5"
   - "pypy"
-script: 
-  - "python _test_build.py"
+
+before_install:
+  - pip install coveralls
+install:
+  - pip install -r test_requirements.txt
+  - pip install -e .
+script:
+  - py.test --cov=literals
+after_success:
+  - coveralls
